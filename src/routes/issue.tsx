@@ -74,6 +74,16 @@ function RouteComponent() {
           <br />
           <div>EXPECT sameAsNumericWithoutQuotes: {parsed.sameAsNumericWithoutQuotes} should be 'router' {parsed.sameAsNumericWithoutQuotes === 'router' ? '✅' : '❌'}</div>
         </>}
+        <br />
+        <br />
+        <strong>ZOD SCHEMA:</strong>
+        <pre>
+          {`z.object({ 
+  number: z.number().optional(),
+  numeric: z.coerce.string().optional(),
+  sameAsNumericWithoutQuotes: z.coerce.string().optional(),
+})`}
+        </pre>
     </pre>
   )
 }

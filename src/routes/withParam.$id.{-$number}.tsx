@@ -14,16 +14,30 @@ function RouteComponent() {
 
   return (
     <div style={{ padding: '2rem' }}>
-      Hello "/withParam/{id}" 
+      Hello "/withParam/{id}"{' '}
       {number ? 
-        <span style={{ color: 'red' }}>
-          with wrong (but expected) number <strong>{number}</strong>
-        </span> : 
+        <>
+          <span style={{ color: 'red' }}>
+            with wrong (but expected) due to parsing number <strong>{number}</strong>
+          </span>
+          <br />
+          <br />
+          <span>However, params looks like do not parse in URL at all. That's why optional parameter stay correct in URL.</span>
+        </> : 
         <>
           <br />
           <a href={`/withParam/${id}/${id}`}>Now open with optional parameter</a>
         </>
-      }!
+      }
+      <br />
+      <br />
+      <strong>ZOD SCHEMA:</strong>
+      <pre>
+        {`params: z.object({ 
+  id: z.coerce.string(), // SAME AS FOR SEARCH PARAMS
+  number: z.coerce.number().optional(),
+})`}
+      </pre>
     </div>
   )
 }
