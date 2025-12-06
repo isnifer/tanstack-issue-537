@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IssueRouteImport } from './routes/issue'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WithParamIdChar123NumberChar125RouteImport } from './routes/withParam.$id.{-$number}'
 
 const IssueRoute = IssueRouteImport.update({
   id: '/issue',
@@ -22,31 +23,41 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WithParamIdChar123NumberChar125Route =
+  WithParamIdChar123NumberChar125RouteImport.update({
+    id: '/withParam/$id/{-$number}',
+    path: '/withParam/$id/{-$number}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/issue': typeof IssueRoute
+  '/withParam/$id/{-$number}': typeof WithParamIdChar123NumberChar125Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/issue': typeof IssueRoute
+  '/withParam/$id/{-$number}': typeof WithParamIdChar123NumberChar125Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/issue': typeof IssueRoute
+  '/withParam/$id/{-$number}': typeof WithParamIdChar123NumberChar125Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/issue'
+  fullPaths: '/' | '/issue' | '/withParam/$id/{-$number}'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/issue'
-  id: '__root__' | '/' | '/issue'
+  to: '/' | '/issue' | '/withParam/$id/{-$number}'
+  id: '__root__' | '/' | '/issue' | '/withParam/$id/{-$number}'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   IssueRoute: typeof IssueRoute
+  WithParamIdChar123NumberChar125Route: typeof WithParamIdChar123NumberChar125Route
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +76,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/withParam/$id/{-$number}': {
+      id: '/withParam/$id/{-$number}'
+      path: '/withParam/$id/{-$number}'
+      fullPath: '/withParam/$id/{-$number}'
+      preLoaderRoute: typeof WithParamIdChar123NumberChar125RouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   IssueRoute: IssueRoute,
+  WithParamIdChar123NumberChar125Route: WithParamIdChar123NumberChar125Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

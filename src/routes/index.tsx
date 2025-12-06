@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import '../App.css'
 
 
@@ -23,6 +23,14 @@ function App() {
         <div>
           BUT WILL BE `/issue?number=6185982271467&numeric=<span style={{ color: 'red' }}>"</span>7234219684596408<span style={{ color: 'red' }}>00"</span>&sameAsNumericWithoutQuotes=router`
         </div>
+        <br />
+        <br />
+        <br />
+        <div>
+          And no issue at all with params
+        </div>
+        <br />
+        <a href="/withParam/723421968459640832" style={{ color: 'white' }}>A link from the internet</a>
       </header>
     </div>
   )
